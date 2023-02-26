@@ -4,3 +4,20 @@
   padding: 2rem;
   text-align: center;
 }
+
+.weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-input input, .weather-input button {
+  height: 2rem;
+}
