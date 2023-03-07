@@ -21,3 +21,22 @@
 .weather-input input, .weather-input button {
   height: 2rem;
 }
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  background-color: #8dd0f5;
+  padding: 2rem;
+}
+
+.header-weather-info, .conditions-weather-info, .humidity-weather-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.header-weather-info img, .location-icon {
+  max-width: 3rem !important;
+  height: auto;
+}
