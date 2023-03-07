@@ -26,7 +26,6 @@ function App() {
     setCountryFlag(fieldsFlag.config.url);
   }
 
-  document.querySelector('.App').style.background()
 
   return (
     <div className="App">
