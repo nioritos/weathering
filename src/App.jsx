@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import './css/App.css';
 import {AiOutlineSearch} from 'react-icons/ai';
-import {GoLocation} from 'react-icons/go';
-import {GiWaterDrop} from 'react-icons/gi';
-import {BsWind} from 'react-icons/bs'
+import { GoLocation } from 'react-icons/go';
+import { GiWaterDrop } from 'react-icons/gi';
+import { BsWind } from 'react-icons/bs'
 import { requestWeatherInfo, requestUnsplashImage, requestCountryFlag } from './api/api';
-const apiKey = import.meta.env.WEATHER_API_KEY;
 const keyWeather = "ba605efc18f1572f61892fe426f18a1a"
 
 function App() {
@@ -31,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <h1>Weathering</h1>
-      <h2>Only helping you with weather informations of your local.</h2>
+      <h2>We help you with weather informations of your local.</h2>
 
       <div className="weather">
           <div className="weather-input">
