@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const requestWeatherInfo = async ( key, local) => {
     try {
-      let url = `https://api.weatherapi.com/v1/current.json?${key}&q=${local}&aqi=yes`
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${local}&units=metric&appid=${key}&lang=pt-br`
       const response = await axios.get(url);
       return response
     } catch (error) {

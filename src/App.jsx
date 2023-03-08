@@ -6,6 +6,7 @@ import {GiWaterDrop} from 'react-icons/gi';
 import {BsWind} from 'react-icons/bs'
 import { requestWeatherInfo, requestUnsplashImage, requestCountryFlag } from './api/api';
 const apiKey = import.meta.env.WEATHER_API_KEY;
+const keyWeather = "ba605efc18f1572f61892fe426f18a1a"
 
 function App() {
   const [local, setLocal] = useState('');
@@ -14,7 +15,7 @@ function App() {
   const [backgroundCountry, setBackgroundCountry] = useState('');
 
   const onClickHandler = async () => {
-    const fields = await requestWeatherInfo('key=109547dac82b4fada42220908232602', local);
+    const fields = await requestWeatherInfo(keyWeather, local);
     setWeather(fields.data);
 
     searchFlag(fields.data)
@@ -22,7 +23,7 @@ function App() {
   }
 
   const searchFlag = async (country) => {
-    const fieldsFlag = await requestCountryFlag(country.location.country);
+    const fieldsFlag = await requestCountryFlag(country.sys.country);
     setCountryFlag(fieldsFlag.config.url);
   }
 
@@ -47,20 +48,20 @@ function App() {
                   <>
                       <div className="header-weather-info">
                       <GoLocation className='location-icon' size={24}/>
-                      <h2>{weather.location.name}</h2> 
+                      <h2>{weather.name}</h2> 
                       <img crossOrigin='anonymous' src={countryFlag} alt="" />
                       </div>
-                      <h1>{weather.current.temp_c} °C</h1>
+                      <h1>{weather.main.temp} °C</h1>
                       <div className="conditions-weather-info">
-                        <h3>{weather.current.condition.text}</h3>
-                        <img src={weather.current.condition.icon} alt="" />
+                        <h3>{weather.weather[0].description}</h3>
+                        {/* <img src={weather.current.condition.icon} alt={weather.weather.description} /> */}
                       </div>
 
                       <div className="humidity-weather-info">
-                        <p>{weather.current.humidity}%</p>
+                        <p>{weather.main.humidity}%</p>
                         <GiWaterDrop size={24}/> |
                         <BsWind size={24}/>
-                        <p>{weather.current.wind_kph}</p>
+                        <p>{weather.wind.speed}km/h</p>
                       </div>
 
                   </>
