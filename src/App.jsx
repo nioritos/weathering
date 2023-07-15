@@ -1,34 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { defaultCities, searchCity } from "./api/api";
+import "./App.css"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [city, setCity] = useState('');
+  const [datas, setDatas] = useState();
+  const [canRender, setRender] = useState(false);
+  console.log(city)
+  
+  const onClickHandler = async () => {
+    let results = await searchCity(city)
+    console.log(results.data)
+    setDatas(results.data)
+    setRender(true)
+  }
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+  return(
+    <div className="App">
+      <header>
+        <h1>🌎</h1>
+        <div className="input-group">
+          <input type="text" name="search-city" id="search-city" onChange={e => setCity(e.target.value) }/>
+          <button onClick={onClickHandler}>🔍</button>
+        </div>
+        <a href="https://github.com/nioritos">
+        <img src="https://github.com/nioritos.png" alt="nioritos photo" />
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      </header>
+      <h1>Weathering</h1>
+      <h2>Searching the city status for you</h2>
+      
+     {
+      canRender ? (
+        <div className="card">
+        <h4>{datas.location.name}</h4>
+        <h2>{datas.current.temp_c}°C</h2>
+        <h3>{datas.current.wind_kph}kph</h3>
+        <p>{datas.location.region}</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      ) : false
+     }
+    </div>
   )
 }
 
