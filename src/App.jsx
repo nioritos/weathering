@@ -1,16 +1,28 @@
 import { useState } from "react";
-import { searchCity } from "./api/api";
+import { searchCity, getForecastCity } from "./api/api";
 import "./App.css"
 
 function App() {
   const [city, setCity] = useState('');
   const [datas, setDatas] = useState();
   const [canRender, setRender] = useState(false);
-  
+  const [forecast, setForecast] = useState([]);
+  let date = new Date();
+  let hours = date.getHours();
   const onClickHandler = async () => {
     let results = await searchCity(city);
+    getForecast()
     setDatas(results.data)
     setRender(true)
+    
+  }
+
+  const getForecast = async () => {
+    let results = await getForecastCity(city, hours);
+    setForecast(results.forecast)
+    if(canRender === false) {
+      setRender(true)
+    }
   }
 
   return(
@@ -40,6 +52,35 @@ function App() {
       </div>
       ) : false
      }
+
+
+     {
+      canRender ? (
+        <div className="container">
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+          <div className="cards">
+            <h4>{forecast.hour.condition.text}</h4>
+          </div>
+        </div>
+      ) : null
+     } 
     </div>
   )
 }
