@@ -20,12 +20,3 @@ export const searchCity = async (city) => {
     console.log(error)
   }
 }
-
-export const cityFlag = async (city) => {
-  try {
-    let url = "";
-    let results = await axios.get()
-  } catch (error) {
-    console.log(error )
-  }
-}

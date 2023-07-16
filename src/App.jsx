@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { defaultCities, searchCity } from "./api/api";
+import { searchCity } from "./api/api";
 import "./App.css"
 
 function App() {
   const [city, setCity] = useState('');
   const [datas, setDatas] = useState();
   const [canRender, setRender] = useState(false);
-  console.log(city)
   
   const onClickHandler = async () => {
-    let results = await searchCity(city)
-    console.log(results.data)
+    let results = await searchCity(city);
     setDatas(results.data)
     setRender(true)
   }
@@ -28,15 +26,17 @@ function App() {
         </a>
       </header>
       <h1>Weathering</h1>
-      <h2>Searching the city status for you</h2>
+      <h2 className="subtitle">Searching the city status for you</h2>
       
      {
       canRender ? (
         <div className="card">
         <h4>{datas.location.name}</h4>
-        <h2>{datas.current.temp_c}°C</h2>
-        <h3>{datas.current.wind_kph}kph</h3>
-        <p>{datas.location.region}</p>
+        <h3 className="condition-text">{datas.current.condition.text}</h3>
+        <img className="condition-icon" src={datas.current.condition.icon} alt={datas.current.condition.text} />
+        <h2 className="temp-c">{datas.current.temp_c}°C</h2>
+        <h3 className="wind-text">{datas.current.wind_kph}kph</h3>
+        <p className="region-text">{datas.location.region}</p>
       </div>
       ) : false
      }
