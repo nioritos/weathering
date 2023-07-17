@@ -56,17 +56,32 @@ function App() {
         ) : false
       }
 
+<div className="forecast-container">
+<h1>Forecast</h1>
+<div className="forecast-content">
+
+
       {
         canRenderForecast ? (
               forecast[0].map(
                 (content, id) => {
                 return (
                   <div className="forecast-cards" key={id}>
-                    <h4>{content.date}</h4>
+                    <h4>{city}</h4>
+                    <h4>{content.hour[0].time}</h4>
+                    
+                    <h3>{content.hour[0].condition.text}</h3>
+                    <img src={content.hour[0].condition.icon} alt={content.hour[0].condition.text} />
+                    <h2>{content.hour[0].temp_c}°C</h2>
                   </div>
                 )
               })) : console.log(false, 'you cannot render this component')
+
       }
+</div>
+
+      </div>
+
     </div>
 )}
 
