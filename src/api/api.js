@@ -13,7 +13,7 @@ export const searchCity = async (city) => {
 
 export const getForecastCity = async (city, hour) => {
   try {
-    let url = `https://api.weatherapi.com/v1/forecast.json?key=7239476866cb42b699630328231507&days=2&hour=${hour}&q=${city}`
+    let url = `https://api.weatherapi.com/v1/forecast.json?key=7239476866cb42b699630328231507&days=7&hour=${hour}&q=${city}`
     let results = await axios.get(url);
     return results
   } catch (error) {
